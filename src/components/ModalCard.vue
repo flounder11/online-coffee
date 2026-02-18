@@ -22,13 +22,15 @@ const closeModal = () => {
 </script>
 
 <template>
-	<div class="fixed inset-0 z-10 bg-black/80 flex justify-end flex-col">
+	<div
+		class="fixed inset-0 z-10 bg-black/80 flex justify-end flex-col overflow-hidden"
+	>
 		<div class="bg-white rounded-t-3xl">
 			<img
 				@click="closeModal"
 				class="w-4 ml-auto mr-5 pt-4 mb-7 cursor-pointer"
 				src="/src/assets/close.svg"
-				alt=""
+				alt="X"
 			/>
 
 			<div

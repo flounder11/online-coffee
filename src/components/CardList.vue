@@ -1,8 +1,9 @@
 <script setup>
-import Card from './Card.vue'
 import { useCardStore } from '../stores/CardStore'
 import { useModalStore } from '../stores/ModalStore'
+import Card from './Card.vue'
 import ModalCard from './ModalCard.vue'
+import Basket from './Basket.vue'
 
 const cardStore = useCardStore()
 const modalStore = useModalStore()
@@ -26,5 +27,6 @@ cardStore.getAdditives()
 			:show="modalStore.isModalOpen"
 			@close="modalStore.closeModal"
 		/>
+		<Basket />
 	</div>
 </template>
