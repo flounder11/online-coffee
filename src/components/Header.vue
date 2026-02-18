@@ -9,7 +9,7 @@ const categoryStore = useCategoryStore()
 	<div class="max-w-sm w-11/12 mx-auto">
 		<div class="py-4 relative">
 			<input
-				class="bg-gray-50 w-full pl-12 pr-3 pt-3 pb-3 rounded-3xl font-medium text-sm text-gray-600 outline-0"
+				class="bg-white w-full pl-12 pr-3 pt-3 pb-3 rounded-3xl font-medium text-sm text-gray-600 outline-0"
 				type="text"
 				placeholder="Найти"
 			/>

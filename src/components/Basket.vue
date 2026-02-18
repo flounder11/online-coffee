@@ -1,14 +1,21 @@
 <script setup>
 import Card from './Card.vue'
+import BasketCard from './BasketCard.vue'
+import { useBasketStore } from '../stores/BasketStore'
+const basketStore = useBasketStore()
+
+const emit = defineEmits(['close'])
+const closeModal = () => {
+	emit('close')
+}
+
 import { useCardStore } from '../stores/CardStore'
 const cardStore = useCardStore()
 </script>
 
 <template>
-	<div
-		class="fixed inset-0 z-10 bg-black/80 flex justify-end flex-col overflow-hidden"
-	>
-		<div class="bg-white rounded-t-3xl">
+	<div class="fixed inset-0 z-10 bg-black/80 flex justify-end flex-col">
+		<div class="bg-white rounded-t-3xl min-h-[85vh]">
 			<img
 				@click="closeModal"
 				class="w-4 ml-auto mr-5 pt-4 cursor-pointer"
@@ -17,46 +24,8 @@ const cardStore = useCardStore()
 			/>
 			<p class="font-semibold text-2xl text-center mb-8">Корзина</p>
 			<div class="flex flex-col gap-y-6 mb-8">
-				<div
-					class="flex max-w-96 mx-auto px-4 py-6 rounded-xl items-center shadow-[0_3px_11px_3px_rgba(119,114,176,0.3)]"
-				>
-					<div><img class="w-22" src="/src/assets/coffee.png" alt="" /></div>
-					<div class="flex flex-col pl-4 pr-7">
-						<p class="font-menium text-xl">Капучино</p>
-						<span class="text-xs pt-1.5 pb-1">Карамельный сироп</span>
-						<span class="text-xs font-light">300 мл</span>
-					</div>
-					<div class="flex flex-col gap-y-4">
-						<span class="font-semibold text-center">180 руб</span>
-						<div
-							class="flex justify-between rounded-sm w-21 h-7 text-xl shadow-[0_1px_4px_0_rgba(0,0,0,0.46)] bg-[#fcfcfc] px-2"
-						>
-							<button>–</button>
-							<span>1</span>
-							<button>+</button>
-						</div>
-					</div>
-				</div>
-
-				<div
-					class="flex max-w-96 mx-auto px-4 py-6 rounded-xl items-center shadow-[0_3px_11px_3px_rgba(119,114,176,0.3)]"
-				>
-					<div><img class="w-22" src="/src/assets/coffee.png" alt="" /></div>
-					<div class="flex flex-col pl-4 pr-7">
-						<p class="font-menium text-xl">Капучино</p>
-						<span class="text-xs pt-1.5 pb-1">Карамельный сироп</span>
-						<span class="text-xs font-light">300 мл</span>
-					</div>
-					<div class="flex flex-col gap-y-4">
-						<span class="font-semibold text-center">180 руб</span>
-						<div
-							class="flex justify-between rounded-sm w-21 h-7 text-xl shadow-[0_1px_4px_0_rgba(0,0,0,0.46)] bg-[#fcfcfc] px-2"
-						>
-							<button>–</button>
-							<span>1</span>
-							<button>+</button>
-						</div>
-					</div>
+				<div v-for="item in basketStore.basket" :key="item.id">
+					<BasketCard :basket="item" />
 				</div>
 			</div>
 
@@ -73,10 +42,11 @@ const cardStore = useCardStore()
 
 			<div>
 				<button
+					@click="basketStore.makeOrder"
 					class="flex justify-between w-96 rounded-xl mx-auto bg-gray-900 px-6 py-4 mb-11 text-gray-50 font-semibold text-xl"
 				>
 					<span>Оформить заказ</span>
-					<span>390 руб</span>
+					<span>{{ basketStore.totalAmount }} руб</span>
 				</button>
 			</div>
 		</div>

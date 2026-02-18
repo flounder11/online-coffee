@@ -6,6 +6,7 @@ export const useModalStore = defineStore('modalStore', () => {
 	const cardStore = useCardStore()
 
 	const isModalOpen = ref(false)
+	const isBasketOpen = ref(false)
 	const selectedCard = ref(null)
 
 	const openModal = card => {
@@ -15,8 +16,13 @@ export const useModalStore = defineStore('modalStore', () => {
 
 	const closeModal = () => {
 		isModalOpen.value = false
+		isBasketOpen.value = false
 		selectedCard.value = null
 		cardStore.finalAdditives = []
+	}
+
+	const openBasket = () => {
+		isBasketOpen.value = true
 	}
 
 	return {
@@ -24,5 +30,7 @@ export const useModalStore = defineStore('modalStore', () => {
 		selectedCard,
 		openModal,
 		closeModal,
+		isBasketOpen,
+		openBasket,
 	}
 })

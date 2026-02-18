@@ -22,9 +22,7 @@ const closeModal = () => {
 </script>
 
 <template>
-	<div
-		class="fixed inset-0 z-10 bg-black/80 flex justify-end flex-col overflow-hidden"
-	>
+	<div class="fixed inset-0 z-10 bg-black/80 flex justify-end flex-col">
 		<div class="bg-white rounded-t-3xl">
 			<img
 				@click="closeModal"
